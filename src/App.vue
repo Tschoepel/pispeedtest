@@ -1,0 +1,259 @@
+<template>
+  <section class="section">
+    <span v-show="loading">Loading</span>
+    <div class="container">
+      <div class="card has-background-dark">
+        <header class="card-header">
+          <p class="card-header-title has-text-white">Speedtest Ergebnisse</p>
+          <p class="has-text-white item-center">
+            <button :disabled="page <= 1" class="button is-small is-white" @click="setPage(page-1)">
+              &lt;
+            </button>
+          </p>
+          <p class="has-text-white" style="align-items: center; display: flex; flex-grow: 0;">
+            <span class="tag is-light has-text-centered" style="width: 4em;">
+              {{ page }}/{{ maxPage }}
+            </span>
+          </p>
+          <p class="has-text-white item-center">
+            <button :disabled="page >= maxPage" class="button is-small is-white" @click="setPage(page+1)">
+              &gt;
+            </button>
+          </p>
+        </header>
+        <div class="card-content" style="">
+          <div class="content">
+            <div class="field has-addons is-pulled-right" style="margin-bottom: 0;">
+              <p class="control">
+                <a class="button is-small is-white" :class="{'is-active': objPerPage == 5}" @click="setObjects(5)">
+                  <span>5</span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-small is-white" :class="{'is-active': objPerPage == 10}" @click="setObjects(10)">
+                  <span>10</span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-small is-white" :class="{'is-active': objPerPage == 15}" @click="setObjects(15)">
+                  <span>15</span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-small is-white" :class="{'is-active': objPerPage == 20}" @click="setObjects(20)">
+                  <span>20</span>
+                </a>
+              </p>
+            </div>
+            <div class="is-clearfix" />
+            <div v-if="data === null || data.length == 0" class="notification is-warning" style="margin-top: 1em;">
+              <span v-if="!error">Es stehen aktuell leider keine Daten zur Verfügung!<br>
+              Bitte vergewissern Sie sich, dass der Cronjob korrekt läuft.</span>
+              <span v-else>{{error}}</span>
+            </div>
+            <table v-else class="table has-background-dark has-text-white is-narrow">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Zeit</th>
+                  <th>Ping</th>
+                  <th>DL</th>
+                  <th>UL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(data, index) in data.slice((page-1)*objPerPage, (page*objPerPage))"
+                  :key="index" :style="(data.dl<minimalValues[0] || data.ul<minimalValues[1]) ? { 'background-color': '#463636'} : ''"
+                >
+                  <td data-label="Datum: ">{{data.date}}</td>
+                  <td data-label="Zeit: ">{{data.time}}</td>
+                  <td data-label="Ping: ">{{data.ping}}</td>
+                  <td data-label="DL: " :class="{'has-text-danger':(data.dl<minimalValues[0])}">{{data.dl}}</td>
+                  <td data-label="UL: " :class="{'has-text-danger':(data.ul<minimalValues[1])}">{{data.ul}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="card-foot" style="padding: 1em;">
+          &copy; <span class="is-hidden-mobile">Copyright</span> {{ new Date().getFullYear() }} -
+          <a href="https://www.tschoepel.de/" target="_blank" rel="noopener">Tschoepel.de</a>.
+          Alle Rechte vorbehalten.
+        </footer>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+// import HelloWorld from './components/HelloWorld'
+
+export default {
+  name: 'App',
+  components: {
+    // HelloWorld
+  },
+  data () {
+    return {
+      loading: false,
+      err: false,
+      error: null,
+      data: null,
+      page: 1,
+      objPerPage: 10,
+      minimalValues: [999, 999]
+    }
+  },
+  mounted () {
+    this.get()
+    this.getMin()
+  },
+  methods: {
+    get () {
+      this.loading = true
+      this.$http
+        .get(this.url + '/api')
+        .then(response => {
+          var res = response.data
+          if (res.indexOf('date')) this.data = response.data
+          else this.error = response.data
+        })
+        .catch(error => {
+          console.error(error)
+          if (typeof error.response !== 'undefined' && typeof error.response.data !== 'undefined') {
+            error = error.response.data
+          }
+          this.err = true
+        })
+        .then(() => { this.loading = false })
+    },
+    getMin () {
+      this.$http
+        .get(this.url + '/min')
+        .then(response => {
+          var res = response.data
+          this.$set(this.minimalValues, 0, parseInt(res['DL']))
+          this.$set(this.minimalValues, 1, parseInt(res['UL']))
+        })
+        .catch(error => {
+          console.error(error)
+          this.error = error
+        })
+    },
+    setPage (page) {
+      if (page < 1) page = 1
+      if (page > this.maxPage) page = this.maxPage
+      this.page = page
+    },
+    setObjects (num) {
+      this.objPerPage = num
+      if (this.page > this.maxPage) {
+        this.page = this.maxPage
+      }
+    }
+  },
+  computed: {
+    url () {
+      return (process.env.NODE_ENV === 'development') ? 'http://localhost:3030' : ''
+    },
+    maxPage: function () {
+      return (this.data !== null) ? Math.ceil(this.data.length / this.objPerPage) : null
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+@import "~bulma";
+body, html {
+  height: 100%;
+  background-color: #1d2127;
+  color: #808697;
+}
+.section {
+    padding: 1.5rem;
+}
+.table th {
+  color: inherit !important;
+}
+.card {
+  color: inherit;
+  background: #2e353e;
+  box-shadow: none;
+}
+
+.title,
+.card-header-title {
+  color: #fff;
+}
+
+.card-header {
+  background: #282d36;
+  border-bottom: 1px solid #1d2127;
+}
+
+.card-header .button {
+  // margin-top: 11px;
+  margin: 0.70rem;
+}
+
+.card-foot {
+  background: #282d36;
+  border-top: 1px solid #1d2127;
+}
+a {
+  color: hsl(217, 71%, 68%)
+}
+a:hover {
+  color: hsl(217, 71%, 78%)
+}
+
+.item-center {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+}
+.content p:not(:last-child){
+  margin-bottom: 0;
+}
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+  background-color: hsla(0, 0%, 25%, 1);
+}
+.content table td, .content table th {
+  border: 1px solid hsl(0, 0%, 18%);
+  border-width: 1px 0px;
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+}
+
+@media screen and (max-width:500px) {
+
+  thead {
+    display:none;
+  }
+  table {
+    margin-top: 1em;
+  }
+
+  tr {
+    float: left;
+    width: 100%;
+    margin-bottom: 2em;
+  }
+
+  td {
+    float: left;
+    width: 100%;
+    padding:1em;
+  }
+
+  td::before {
+    content:attr(data-label);
+    box-sizing: border-box;
+    word-wrap: break-word;
+    width: 20%;
+  }
+}
+
+</style>
