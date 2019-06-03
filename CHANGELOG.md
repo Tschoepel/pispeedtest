@@ -8,6 +8,8 @@
 ### Changed
 - Updated `README`.
 
+### Fixed
+- Fixed python path to database.
 
 ## [1.0.1] - 30.05.2019
 
