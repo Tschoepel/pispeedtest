@@ -1,18 +1,27 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true
   },
-  'extends': [
-    'eslint:recommended',
-    'plugin:vue/essential',
-    '@vue/standard'
-  ],
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-  },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: "babel-eslint"
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:vue/recommended",
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/vue",
+  ],
+  // required to lint *.vue files
+  plugins: ["prettier", "vue"],
+  // add your custom rules here
+  rules: {
+    // 'vue/singleline-html-element-content-newline': 'off',
+    "prettier/prettier": "error",
+    'vue/no-v-html': 0,
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   }
 }

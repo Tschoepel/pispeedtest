@@ -1,6 +1,18 @@
 # Changelog
 
-## [1.0.2] - 03.0.2019
+## [1.0.3] - 03.06.2019
+
+### Added
+- Possibility to only show problematic entries.
+
+### Changed
+- `eslint` now works with prettier and vue set of rules.
+
+### Fixed
+- Small necessary fixes.
+
+
+## [1.0.2] - 03.06.2019
 
 ### Added
 - Logging to python script.
