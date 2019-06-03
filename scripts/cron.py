@@ -11,7 +11,7 @@ def log(msg):
     print(msg)
 
 def saveData(ping, dl, ul):
-  conn = sqlite3.connect('./database.db')
+  conn = sqlite3.connect('../database.db')
   c = conn.cursor()
   log("connection established")
   table = c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='speeds'")
