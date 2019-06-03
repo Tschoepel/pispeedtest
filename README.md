@@ -12,7 +12,7 @@ A simple project to install on a raspberry pi to measure internet speeds and dis
 ```
 git clone https://github.com/Tschoepel/pispeedtest
 cd pispeedtest
-pip3 install speedtest-cli, python-dotenv --user
+pip3 install speedtest-cli python-dotenv --user
 cp .env.example .env
 yarn install --prod
 ```

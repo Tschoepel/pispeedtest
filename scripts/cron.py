@@ -2,19 +2,28 @@
 
 import sqlite3, speedtest, datetime
 
+debug = False
+
+def log(msg):
+  if(debug):
+    print(msg)
+
 def saveData(ping, dl, ul):
   conn = sqlite3.connect('./database.db')
   c = conn.cursor()
+  log("connection established")
   table = c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='speeds'")
   if(c.fetchone() == None):
     c.execute('''CREATE TABLE speeds(date text, time text, ping real, dl real, ul real)''')
+    log("table created")
   values = (datetime.datetime.today().strftime('%d.%m.%Y'),
     datetime.datetime.today().strftime('%H:%M'),
     ping, dl, ul)
   c.execute('INSERT INTO speeds VALUES (?,?,?,?,?)', values)
+  log("values inserted")
   conn.commit()
-  # for row in c.execute('SELECT * FROM speeds'):
-  #   print(row)
+  for row in c.execute('SELECT * FROM speeds'):
+    log(row)
   conn.close()
 
 s = speedtest.Speedtest()
