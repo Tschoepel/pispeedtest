@@ -8,9 +8,10 @@
             Speedtest Ergebnisse
           </p>
           <p class="has-text-white item-center">
-            <span v-if="data !== null" style="margin-lef: 2em;"
-              >{{ data.length }} Einträge gesamt</span
-            >
+            <span v-if="data !== null" style="margin-lef: 2em;">
+              {{ percentage }}% - {{ problematicData.length }}/{{ data.length }}
+              problematische Einträge
+            </span>
           </p>
           <p class="has-text-white item-center">
             <button
@@ -114,7 +115,7 @@
               </thead>
               <tbody>
                 <tr
-                  v-for="(item, index) in computedData"
+                  v-for="(item, index) in slicedData"
                   :key="index"
                   :style="
                     item.dl < minimalValues[0] || item.ul < minimalValues[1]
@@ -187,23 +188,31 @@ export default {
         ? Math.ceil(this.data.length / this.objPerPage)
         : null
     },
-    computedData: function() {
+    filteredData: function() {
       if (!this.checked) {
-        return this.data.slice(
-          (this.page - 1) * this.objPerPage,
-          this.page * this.objPerPage
-        )
+        return this.data
       } else {
-        var temp = this.data.filter(item => {
-          return (
-            item.dl < this.minimalValues[0] || item.ul < this.minimalValues[1]
-          )
-        })
-        return temp.slice(
-          (this.page - 1) * this.objPerPage,
-          this.page * this.objPerPage
-        )
+        return this.problematicData
       }
+    },
+    problematicData: function() {
+      return this.data.filter(item => {
+        return (
+          item.dl < this.minimalValues[0] || item.ul < this.minimalValues[1]
+        )
+      })
+    },
+    slicedData: function() {
+      return this.filteredData.slice(
+        (this.page - 1) * this.objPerPage,
+        this.page * this.objPerPage
+      )
+    },
+    percentage: function() {
+      return (
+        ((this.data.length - this.problematicData.length) * 100) /
+        this.data.length
+      )
     }
   },
   mounted() {

@@ -4,6 +4,7 @@
 
 ### Added
 - Possibility to only show problematic entries.
+- Percentage of problematic entries.
 
 ### Changed
 - `eslint` now works with prettier and vue set of rules.
