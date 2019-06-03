@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sqlite3, speedtest, datetime, os
+import sqlite3, speedtest, datetime, os, sys
 
 os.chdir(sys.path[0])
 
