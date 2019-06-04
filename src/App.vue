@@ -209,7 +209,11 @@ export default {
       )
     },
     percentage: function() {
-      return Math.round((this.problematicData.length * 100) / this.data.length)
+      return (
+        Math.round(
+          ((this.problematicData.length * 100) / this.data.length) * 10
+        ) / 10
+      )
     }
   },
   mounted() {
