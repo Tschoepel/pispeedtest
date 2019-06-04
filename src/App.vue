@@ -4,41 +4,41 @@
     <div class="container">
       <div class="card has-background-dark">
         <header class="card-header">
-          <p class="card-header-title has-text-white">
-            Speedtest Ergebnisse
-          </p>
-          <p class="has-text-white item-center">
-            <span v-if="data !== null" style="margin-lef: 2em;">
-              {{ percentage }}% - {{ problematicData.length }}/{{ data.length }}
-              problematische Einträge
-            </span>
-          </p>
-          <p class="has-text-white item-center">
-            <button
-              :disabled="page <= 1"
-              class="button is-small is-white"
-              @click="setPage(page - 1)"
-            >
-              &lt;
-            </button>
-          </p>
-          <p
-            class="has-text-white"
-            style="align-items: center; display: flex; flex-grow: 0;"
-          >
-            <span class="tag is-light has-text-centered" style="width: 4em;">
-              {{ page }}/{{ maxPage }}
-            </span>
-          </p>
-          <p class="has-text-white item-center">
-            <button
-              :disabled="page >= maxPage"
-              class="button is-small is-white"
-              @click="setPage(page + 1)"
-            >
-              &gt;
-            </button>
-          </p>
+          <div class="columns is-vcentered">
+            <div class="column">
+              <p class="card-header-title has-text-white">
+                Speedtest Ergebnisse
+              </p>
+            </div>
+            <div class="column is-narrow">
+              <p class="has-text-white item-center">
+                <span v-if="data !== null" style="margin-lef: 2em;">
+                  {{ problematicData.length }}/{{ data.length }} ({{
+                    percentage
+                  }}%) Einträge problematisch
+                </span>
+              </p>
+            </div>
+            <div class="column has-text-right">
+              <button
+                :disabled="page <= 1"
+                class="button is-small is-white"
+                @click="setPage(page - 1)"
+              >
+                &lt;
+              </button>
+              <span class="tag is-light has-text-centered" style="width: 4em;">
+                {{ page }}/{{ maxPage }}
+              </span>
+              <button
+                :disabled="page >= maxPage"
+                class="button is-small is-white"
+                @click="setPage(page + 1)"
+              >
+                &gt;
+              </button>
+            </div>
+          </div>
         </header>
         <div class="card-content" style="">
           <div class="content">
@@ -145,7 +145,7 @@
             </table>
           </div>
         </div>
-        <footer class="card-foot" style="padding: 1em;">
+        <footer class="card-foot">
           &copy; <span class="is-hidden-mobile">Copyright</span>
           {{ new Date().getFullYear() }} -
           <a href="https://www.tschoepel.de/" target="_blank" rel="noopener"
@@ -209,7 +209,7 @@ export default {
       )
     },
     percentage: function() {
-      return (this.problematicData.length * 100) / this.data.length
+      return Math.round((this.problematicData.length * 100) / this.data.length)
     }
   },
   mounted() {
@@ -296,16 +296,21 @@ html {
 .card-header {
   background: #282d36;
   border-bottom: 1px solid #1d2127;
+  display: block;
+  padding: 0.75rem;
 }
 
 .card-header .button {
-  // margin-top: 11px;
-  margin: 0.7rem;
+  margin: 0 0.5rem;
+}
+.column {
+  padding: 0;
 }
 
 .card-foot {
   background: #282d36;
   border-top: 1px solid #1d2127;
+  padding: 0.75rem;
 }
 a {
   color: hsl(217, 71%, 68%);

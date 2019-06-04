@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.4] - 04.06.2019
+
+### Changed
+- Different style changes.
+
+### Fixed
+- Percentage was fixed.
+
+### Deleted
+- `test.py` for local testing.
+
+
 ## [1.0.3] - 03.06.2019
 
 ### Added
