@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5] - 05.06.2019
+
+### Fixed
+- Pagination now works with filtered data.
+
+
 ## [1.0.4] - 04.06.2019
 
 ### Changed

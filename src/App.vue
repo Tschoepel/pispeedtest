@@ -184,8 +184,8 @@ export default {
         : ''
     },
     maxPage: function() {
-      return this.data !== null
-        ? Math.ceil(this.data.length / this.objPerPage)
+      return this.filteredData !== null
+        ? Math.ceil(this.filteredData.length / this.objPerPage)
         : null
     },
     filteredData: function() {
@@ -214,6 +214,12 @@ export default {
           ((this.problematicData.length * 100) / this.data.length) * 10
         ) / 10
       )
+    }
+  },
+  watch: {
+    // whenever question changes, this function will run
+    maxPage: function() {
+      if (this.page > this.maxPage) this.page = this.maxPage
     }
   },
   mounted() {
