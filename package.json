@@ -1,6 +1,6 @@
 {
   "name": "pispeedtest",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,20 +10,23 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "sqlite3": "^4.0.6"
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "sqlite3": "^4.0.8"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-plugin-eslint": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.1",
-    "bulma": "^0.7.2",
-    "cors": "^2.8.5",
+    "bulma": "^0.7.5",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-config-standard": "^12.0.0",
@@ -33,15 +36,13 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
-    "lint-staged": "^7.2.2",
-    "node-sass": "^4.9.0",
+    "lint-staged": "^8.1.7",
+    "node-sass": "^4.12.0",
     "prettier": "^1.17.1",
-    "sass-loader": "^7.0.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
-    "vue": "^2.5.17",
-    "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "sass-loader": "^7.1.0",
+    "vue": "^2.6.10",
+    "vue-simple-progress": "^1.1.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -57,6 +58,6 @@
     ]
   },
   "optionalDependencies": {
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.19.1"
   }
 }

@@ -1,6 +1,5 @@
 <template>
   <section class="section">
-    <span v-show="loading">Loading</span>
     <div class="container">
       <div class="card has-background-dark">
         <header class="card-header">
@@ -40,8 +39,17 @@
             </div>
           </div>
         </header>
+        <progress-bar :val="Math.round((timer * 100) / timerMax)" />
         <div class="card-content" style="">
           <div class="content">
+            <a
+              class="button is-small is-success is-pulled-right"
+              :class="{ 'is-active': objPerPage == 5 }"
+              style="margin-left: 1rem;"
+              @click="get()"
+            >
+              <span><font-awesome-icon icon="sync-alt"/></span>
+            </a>
             <div
               class="field has-addons is-pulled-right"
               style="margin-bottom: 0;"
@@ -158,13 +166,11 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld'
+import ProgressBar from 'vue-simple-progress'
 
 export default {
   name: 'App',
-  components: {
-    // HelloWorld
-  },
+  components: { ProgressBar },
   data() {
     return {
       loading: false,
@@ -174,7 +180,10 @@ export default {
       page: 1,
       objPerPage: 10,
       minimalValues: [999, 999],
-      checked: false
+      checked: false,
+      interval: null,
+      timer: 0,
+      timerMax: 300
     }
   },
   computed: {
@@ -217,7 +226,6 @@ export default {
     }
   },
   watch: {
-    // whenever question changes, this function will run
     maxPage: function() {
       if (this.page > this.maxPage) this.page = this.maxPage
     }
@@ -225,9 +233,21 @@ export default {
   mounted() {
     this.get()
     this.getMin()
+    this.interval = setInterval(this.count, 1000)
+  },
+  beforeDestroy() {
+    clearInterval(this.interval)
   },
   methods: {
+    count: function() {
+      this.timer = this.timer + 1
+      if (this.timer == this.timerMax) {
+        this.get()
+        this.timer = 1
+      }
+    },
     get() {
+      this.timer = 1
       this.loading = true
       this.$http
         .get(this.url + '/api')

@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.6] - 05.06.2019
+
+### Added
+- Progressbar for automatic refresh every 5 minutes.
+- Possibility refresh entries manually.
+- FontAwesome for icons.
+
+### Changed
+- Updated all dependencies.
+- Updated `package.json`.
+
+### Fixed
+- Small necessary fixes.
+
+
 ## [1.0.5] - 05.06.2019
 
 ### Fixed
