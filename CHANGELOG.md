@@ -2,13 +2,8 @@
 
 ## [1.1.1] - 16.06.2019
 
-### Added
-- `settings.json` for VS Code.
-- Notifications for empty `.env` file.
-
-### Changed
-- Replaced python code with node code.
-- `README.md` to reflect new changes.
+### Fixed
+- `cron.js`: minutes fixed.
 
 ### Removed
 - `.vscode` removed again.
