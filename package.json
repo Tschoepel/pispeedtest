@@ -1,6 +1,6 @@
 {
   "name": "pispeedtest",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "speedtest-net": "^1.5.1",
     "sqlite3": "^4.0.8"
   },
   "devDependencies": {
@@ -45,7 +46,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged && yarn build"
   },
   "lint-staged": {
     "*.js": [

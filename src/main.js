@@ -3,10 +3,10 @@ import axios from 'axios'
 import App from './App.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSyncAlt, faDownload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSyncAlt)
+library.add(faSyncAlt, faDownload)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

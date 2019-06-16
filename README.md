@@ -1,6 +1,6 @@
 # Welcome to pispeedtest 👋
 <p>
-  <img src="https://img.shields.io/badge/version-1.0.7-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/version-1.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
@@ -13,7 +13,6 @@
 ### 🏠 [Homepage](https://www.tschoepel.de/portfolio/pispeedtest/)
 
 ## Requirements
-- Python3 & pip3 for cronjob.
 - NodeJS & yarn/npm for node server app.
 
 ## Installation
@@ -21,7 +20,6 @@
 ```sh
 git clone https://github.com/Tschoepel/pispeedtest
 cd pispeedtest
-pip3 install speedtest-cli python-dotenv --user
 cp .env.example .env
 yarn install --prod
 ```
@@ -32,7 +30,7 @@ Change the values in your .env file. DL and UL are in MBit/s.
 ## Running
 Starts the NodeJS/Express server with nodemon:
 ```sh
-yarn add nodemon
+yarn add nodemon -D
 yarn start
 ```
 ## Running on startup
@@ -44,20 +42,20 @@ pm2 start ./bin/www.js
 ```
 
 ## Running the cronjob
-To register the python script as a cronjob to run a daily speedtest at 00:00:
+To register the node script as a cronjob to run a daily speedtest at 00:00:
 ```
 > crontab -e
 
-0 0 * * * /usr/bin/python /home/user/path/to/pispeedtest/scripts/cron.py
+0 0 * * * node "/home/user/path/to/pispeedtest/scripts/cron.js"
 ```
 
-To run an hourly speedtest:
+To run an hourly speedtest: (with user pi and pispeedtest in home folder)
 ```
 > crontab -e
 
-0 * * * * /usr/bin/python /home/user/path/to/pispeedtest/scripts/cron.py
+0 * * * * node "/home/pi/pispeedtest/scripts/cron.js"
 ```
 
 ## Copyright and license
 
-&copy; Copyright 2019 - [Sebastian Tschöpel](https://www.tschoepel.de/).  Code released under [the MIT license](https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE).
+&copy; Copyright 2019 - [Sebastian Tschöpel](https://www.tschoepel.de/). Code released under [the MIT license](https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE).

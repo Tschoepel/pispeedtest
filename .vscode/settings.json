@@ -1,0 +1,22 @@
+{
+  "cSpell.words": [
+    "bulma",
+    "clearfix",
+    "fontawesome",
+    "fortawesome",
+    "hsla",
+    "pispeedtest",
+    "speedtest",
+    "vcentered"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "vetur.validation.template": false,
+  "eslint.enable": true
+}

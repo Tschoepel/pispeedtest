@@ -1,6 +1,17 @@
 <template>
   <section class="section">
     <div class="container">
+      <div
+        v-if="minimalValues[0] === 0"
+        class="notification is-warning"
+        style="margin-top: 1em;"
+      >
+        <span
+          >Es wurden keine Minimalwerte erkannt! Bitte führen Sie folgenden
+          Befehl in dem Ordner pispeedtest aus "cp .env.example .env" und
+          starten dann den Server neu.
+        </span>
+      </div>
       <div class="card has-background-dark">
         <header class="card-header">
           <div class="columns is-vcentered">
@@ -159,6 +170,19 @@
           <a href="https://www.tschoepel.de/" target="_blank" rel="noopener"
             >Tschoepel.de</a
           >. Alle Rechte vorbehalten.
+          <a
+            v-if="update"
+            href="https://github.com/Tschoepel/pispeedtest/blob/master/UPGRADE.md"
+            target="_blank"
+            rel="noopener"
+            class="button is-small is-success is-pulled-right"
+            :class="{ 'is-active': objPerPage == 5 }"
+            style="margin-left: 0.5rem;"
+          >
+            <span>Neues Update verfügbar!</span>
+            <span class="icon"><font-awesome-icon icon="download"/></span>
+          </a>
+          <span class="is-pulled-right">Version: {{ version }}</span>
         </footer>
       </div>
     </div>
@@ -173,6 +197,7 @@ export default {
   components: { ProgressBar },
   data() {
     return {
+      version: process.env.VUE_APP_VERSION,
       loading: false,
       err: false,
       error: null,
@@ -183,7 +208,8 @@ export default {
       checked: false,
       interval: null,
       timer: 0,
-      timerMax: 300
+      timerMax: 300,
+      update: false
     }
   },
   computed: {
@@ -233,6 +259,7 @@ export default {
   mounted() {
     this.get()
     this.getMin()
+    this.check()
     this.interval = setInterval(this.count, 1000)
   },
   beforeDestroy() {
@@ -275,8 +302,27 @@ export default {
         .get(this.url + '/min')
         .then(response => {
           var res = response.data
-          this.$set(this.minimalValues, 0, parseInt(res['DL']))
-          this.$set(this.minimalValues, 1, parseInt(res['UL']))
+          if (isNaN(res['DL'])) {
+            this.$set(this.minimalValues, 0, 0)
+            this.$set(this.minimalValues, 1, 0)
+          } else {
+            this.$set(this.minimalValues, 0, parseInt(res['DL']))
+            this.$set(this.minimalValues, 1, parseInt(res['UL']))
+          }
+        })
+        .catch(error => {
+          console.error(error)
+          this.error = error
+        })
+    },
+    check() {
+      this.$http
+        .get(
+          'https://raw.githubusercontent.com/Tschoepel/pispeedtest/master/package.json'
+        )
+        .then(response => {
+          var res = response.data
+          if (this.version < res.version) this.update = true
         })
         .catch(error => {
           console.error(error)
@@ -299,6 +345,7 @@ export default {
 </script>
 
 <style lang="scss">
+$green: #28a745;
 @import '~bulma';
 body,
 html {
