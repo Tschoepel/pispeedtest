@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.7] - 16.06.2019
+
+### Changed
+- Updated all dependencies.
+- Updated `README.md`.
+
+
+
 ## [1.0.6] - 05.06.2019
 
 ### Added
