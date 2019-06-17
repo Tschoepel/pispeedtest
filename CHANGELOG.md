@@ -1,9 +1,14 @@
 # Changelog
 
+## [1.1.2] - 17.06.2019
+
+### Fixed
+- `cron.js`: Time insertions fixed.
+
 ## [1.1.1] - 16.06.2019
 
 ### Fixed
-- `cron.js`: minutes fixed.
+- `cron.js`: Minutes fixed.
 
 ### Removed
 - `.vscode` removed again.

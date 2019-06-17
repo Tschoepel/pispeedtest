@@ -78,16 +78,7 @@ function saveEntry(ping, dl, ul) {
   if (min < 10) {
     min = '0' + min
   }
-  if (min == 0) {
-    min = '00'
-  }
-  let values = [
-    dd + '.' + mm + '.' + yyyy,
-    today.getHours() + ':' + today.getMinutes(),
-    ping,
-    dl,
-    ul
-  ]
+  let values = [dd + '.' + mm + '.' + yyyy, hour + ':' + min, ping, dl, ul]
   db.run('INSERT INTO speeds VALUES( ? , ? , ? , ? , ? )', values, function(
     err
   ) {
