@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3] - 01.07.2019
+
+### Changed
+- Updated all dependencies.
+
+### Fixed
+- `app.js`: Now displaying correct order of entries.
+
 ## [1.1.2] - 17.06.2019
 
 ### Fixed

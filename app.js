@@ -28,7 +28,7 @@ app.use('/api', (req, res) => {
     }
   })
 
-  db.all(`SELECT * FROM speeds ORDER BY date DESC, time DESC`, (err, rows) => {
+  db.all(`SELECT * FROM speeds ORDER BY ROWID DESC`, (err, rows) => {
     if (err) {
       console.error(err.message)
     }
