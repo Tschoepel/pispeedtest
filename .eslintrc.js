@@ -10,18 +10,14 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:vue/recommended",
-    "plugin:prettier/recommended",
-    "prettier",
-    "prettier/vue",
   ],
   // required to lint *.vue files
-  plugins: ["prettier", "vue"],
+  plugins: ["vue"],
   // add your custom rules here
   rules: {
     // 'vue/singleline-html-element-content-newline': 'off',
-    "prettier/prettier": "error",
     'vue/no-v-html': 0,
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-console": "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
   }
 }

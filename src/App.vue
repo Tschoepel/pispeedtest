@@ -1,13 +1,35 @@
 <template>
   <section class="section">
+    <svg
+      aria-hidden="true"
+      style="position: absolute; width: 0; height: 0; overflow: hidden;"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <symbol
+          id="icon-download3"
+          viewBox="0 0 32 32"
+        >
+          <path d="M23 14l-8 8-8-8h5v-12h6v12zM15 22h-15v8h30v-8h-15zM28 26h-4v-2h4v2z" />
+        </symbol>
+        <symbol
+          id="icon-loop2"
+          viewBox="0 0 32 32"
+        >
+          <path d="M27.802 5.197c-2.925-3.194-7.13-5.197-11.803-5.197-8.837 0-16 7.163-16 16h3c0-7.18 5.82-13 13-13 3.844 0 7.298 1.669 9.678 4.322l-4.678 4.678h11v-11l-4.198 4.197z" />
+          <path d="M29 16c0 7.18-5.82 13-13 13-3.844 0-7.298-1.669-9.678-4.322l4.678-4.678h-11v11l4.197-4.197c2.925 3.194 7.13 5.197 11.803 5.197 8.837 0 16-7.163 16-16h-3z" />
+        </symbol>
+      </defs>
+    </svg>
     <div class="container">
       <div
         v-if="minimalValues[0] === 0"
         class="notification is-warning"
         style="margin-top: 1em;"
       >
-        <span
-          >Es wurden keine Minimalwerte erkannt! Bitte führen Sie folgenden
+        <span>Es wurden keine Minimalwerte erkannt! Bitte führen Sie folgenden
           Befehl in dem Ordner pispeedtest aus "cp .env.example .env" und
           starten dann den Server neu.
         </span>
@@ -22,7 +44,10 @@
             </div>
             <div class="column is-narrow">
               <p class="has-text-white item-center">
-                <span v-if="data !== null" style="margin-lef: 2em;">
+                <span
+                  v-if="data !== null"
+                  style="margin-lef: 2em;"
+                >
                   {{ problematicData.length }}/{{ data.length }} ({{
                     percentage
                   }}%) Einträge problematisch
@@ -37,7 +62,10 @@
               >
                 &lt;
               </button>
-              <span class="tag is-light has-text-centered" style="width: 4em;">
+              <span
+                class="tag is-light has-text-centered"
+                style="width: 4em;"
+              >
                 {{ page }}/{{ maxPage }}
               </span>
               <button
@@ -51,7 +79,10 @@
           </div>
         </header>
         <progress-bar :val="Math.round((timer * 100) / timerMax)" />
-        <div class="card-content" style="">
+        <div
+          class="card-content"
+          style=""
+        >
           <div class="content">
             <a
               class="button is-small is-success is-pulled-right"
@@ -59,7 +90,11 @@
               style="margin-left: 1rem;"
               @click="get()"
             >
-              <span><font-awesome-icon icon="sync-alt"/></span>
+              <span class="icon mx-0">
+                <svg class="icomoon">
+                  <use xlink:href="#icon-loop2" />
+                </svg>
+              </span>
             </a>
             <div
               class="field has-addons is-pulled-right"
@@ -102,8 +137,14 @@
                 </a>
               </p>
             </div>
-            <label class="checkbox is-pulled-right" style="margin-right: 1em;">
-              <input v-model="checked" type="checkbox" />
+            <label
+              class="checkbox is-pulled-right"
+              style="margin-right: 1em;"
+            >
+              <input
+                v-model="checked"
+                type="checkbox"
+              >
               Nur Problemfälle anzeigen
             </label>
             <div class="is-clearfix" />
@@ -112,11 +153,11 @@
               class="notification is-warning"
               style="margin-top: 1em;"
             >
-              <span v-if="!error"
-                >Es stehen aktuell leider keine Daten zur Verfügung!<br />
+              <span
+                v-if="!error"
+              >Es stehen aktuell leider keine Daten zur Verfügung!<br>
                 Bitte vergewissern Sie sich, dass der Cronjob korrekt
-                läuft.</span
-              >
+                läuft.</span>
               <span v-else>{{ error }}</span>
             </div>
             <table
@@ -142,8 +183,12 @@
                       : ''
                   "
                 >
-                  <td data-label="Datum: ">{{ item.date }}</td>
-                  <td data-label="Zeit: ">{{ item.time }}</td>
+                  <td data-label="Datum: ">
+                    {{ item.date }}
+                  </td>
+                  <td data-label="Zeit: ">
+                    {{ item.time }}
+                  </td>
                   <td data-label="Ping: ">
                     {{ parseFloat(item.ping).toFixed(2) }}
                   </td>
@@ -167,9 +212,11 @@
         <footer class="card-foot">
           &copy; <span class="is-hidden-mobile">Copyright</span>
           {{ new Date().getFullYear() }} -
-          <a href="https://www.tschoepel.de/" target="_blank" rel="noopener"
-            >Tschoepel.de</a
-          >. Alle Rechte vorbehalten.
+          <a
+            href="https://www.tschoepel.de/"
+            target="_blank"
+            rel="noopener"
+          >Tschoepel.de</a>. Alle Rechte vorbehalten.
           <a
             v-if="update"
             href="https://github.com/Tschoepel/pispeedtest/blob/master/UPGRADE.md"
@@ -180,7 +227,11 @@
             style="margin-left: 0.5rem;"
           >
             <span>Neues Update verfügbar!</span>
-            <span class="icon"><font-awesome-icon icon="download"/></span>
+            <span class="icon mx-1">
+              <svg class="icomoon">
+                <use xlink:href="#icon-download3" />
+              </svg>
+            </span>
           </a>
           <span class="is-pulled-right">Version: {{ version }}</span>
         </footer>
@@ -345,7 +396,6 @@ export default {
 </script>
 
 <style lang="scss">
-$green: #28a745;
 @import '~bulma';
 body,
 html {
@@ -447,4 +497,22 @@ a:hover {
     width: 20%;
   }
 }
+
+.icomoon {
+  display: inline-block;
+  width: 1.0rem;
+  height: 1.0rem;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
 </style>

@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.4] - 15.09.2020
+
+### Changed
+- Updated all dependencies.
+
+### Removed
+- `FontAwesome` to inline svg icons.
+- `Prettier` is not needed anymore.
+
 ## [1.1.3] - 01.07.2019
 
 ### Changed

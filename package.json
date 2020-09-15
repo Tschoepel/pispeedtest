@@ -1,6 +1,6 @@
 {
   "name": "pispeedtest",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,38 +12,32 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "speedtest-net": "^1.5.1",
-    "sqlite3": "^4.0.8"
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.19",
-    "@fortawesome/free-solid-svg-icons": "^5.9.0",
-    "@fortawesome/vue-fontawesome": "^0.1.6",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "axios": "^0.19.0",
-    "babel-eslint": "^10.0.1",
-    "bulma": "^0.7.5",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "lint-staged": "^8.1.7",
-    "node-sass": "^4.12.0",
-    "prettier": "^1.17.1",
-    "sass-loader": "^7.1.0",
-    "vue": "^2.6.10",
-    "vue-simple-progress": "^1.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-plugin-babel": "^4.5.6",
+    "@vue/cli-plugin-eslint": "^4.5.6",
+    "@vue/cli-service": "^4.5.6",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "axios": "^0.20.0",
+    "babel-eslint": "^10.1.0",
+    "bulma": "^0.9.0",
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^10.3.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "vue": "^2.6.12",
+    "vue-simple-progress": "^1.1.1",
+    "vue-template-compiler": "^2.6.12"
   },
   "gitHooks": {
     "pre-commit": "lint-staged && yarn build"
@@ -59,6 +53,6 @@
     ]
   },
   "optionalDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^2.0.4"
   }
 }
