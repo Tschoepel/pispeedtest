@@ -1,15 +1,11 @@
 # Welcome to pispeedtest 👋
-<p>
-  <img src="https://img.shields.io/badge/version-1.1.5-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
-  </a>
-</p>
+![VersionBadge](https://img.shields.io/badge/version-1.1.5-blue.svg?cacheSeconds=2592000)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE)
+[![CodeQL](https://github.com/Tschoepel/pispeedtest/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Tschoepel/pispeedtest/actions/workflows/codeql-analysis.yml)
 
 > A simple project to install on a raspberry pi to measure internet speeds and display results.
 
 ![pispeedtest Screenshot](https://i.imgur.com/zgpErZn.png)
-
 ### 🏠 [Homepage](https://www.tschoepel.de/portfolio/pispeedtest/)
 
 ## Requirements

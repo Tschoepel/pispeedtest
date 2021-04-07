@@ -2,6 +2,8 @@
 
 ## [1.1.5] - 07.04.2021
 
+## Added
+- CodeQL Code Scanning.
 ### Changed
 - Updated all dependencies.
 
