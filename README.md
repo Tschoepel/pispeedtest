@@ -1,6 +1,6 @@
 # Welcome to pispeedtest 👋
 <p>
-  <img src="https://img.shields.io/badge/version-1.1.3-blue.svg?cacheSeconds=2592000" />
+  <img src="https://img.shields.io/badge/version-1.1.5-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
@@ -13,7 +13,7 @@
 ### 🏠 [Homepage](https://www.tschoepel.de/portfolio/pispeedtest/)
 
 ## Requirements
-- NodeJS & yarn/npm for node server app.
+- NodeJS & npm for node server app.
 
 ## Installation
 
@@ -21,7 +21,7 @@
 git clone https://github.com/Tschoepel/pispeedtest
 cd pispeedtest
 cp .env.example .env
-yarn install --prod
+npm i
 ```
 
 ## Configuration
@@ -30,13 +30,13 @@ Change the values in your .env file. DL and UL are in MBit/s.
 ## Running
 Starts the NodeJS/Express server with nodemon:
 ```sh
-yarn add nodemon -D
-yarn start
+npm install nodemon
+npm run start
 ```
 ## Running on startup
 To run the NodeJS/Express server on startup I would recommend using pm2:
 ```sh
-yarn global add pm2
+yarn install -g pm2
 cd pispeedtest
 pm2 start ./bin/www.js
 ```
@@ -58,4 +58,4 @@ To run an hourly speedtest: (with user pi and pispeedtest in home folder)
 
 ## Copyright and license
 
-&copy; Copyright 2019 - [Sebastian Tschöpel](https://www.tschoepel.de/). Code released under [the MIT license](https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE).
+&copy; Copyright 2021 - [Sebastian Tschöpel](https://www.tschoepel.de/). Code released under [the MIT license](https://github.com/Tschoepel/pispeedtest/blob/master/LICENSE).
